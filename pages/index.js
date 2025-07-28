@@ -17,7 +17,7 @@ export default function Home() {
     formData.append("category", category);
 
     try {
-      await axios.post("http://127.0.0.1:8000/upload-pdf", formData);
+      await axios.post("https://recipes-9s4d.onrender.com", formData);
       setTitle("");
       fetchPdfs();
     } catch (err) {
@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   const fetchPdfs = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/list-pdfs");
+    const res = await axios.get("https://recipes-9s4d.onrender.com/list-pdfs");
     setPdfs(res.data);
   };
 
@@ -73,7 +73,7 @@ export default function Home() {
           <li key={index}>
             <strong>{pdf.title}</strong> ({pdf.category}) -{" "}
             <a
-              href={`http://127.0.0.1:8000${pdf.path}`}
+              href={`https://recipes-9s4d.onrender.com${pdf.path}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
