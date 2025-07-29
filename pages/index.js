@@ -7,23 +7,23 @@ export default function Home() {
   const [pdfs, setPdfs] = useState([]);
   const [search, setSearch] = useState("");
 
-  const handleUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file || !title) return alert("Please enter a title and select a file.");
+const handleUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file || !title) return alert("Please enter a title and select a file.");
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("title", title);
-    formData.append("category", category);
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("title", title);
+  formData.append("category", category);
 
-    try {
-      await axios.post("https://recipes-9s4d.onrender.com", formData);
-      setTitle("");
-      fetchPdfs();
-    } catch (err) {
-      alert(err.response?.data?.detail || "Upload failed.");
-    }
-  };
+  try {
+    await axios.post("https://recipes-9s4d.onrender.com/upload-pdf", formData);
+    setTitle("");
+    fetchPdfs();
+  } catch (err) {
+    alert(err.response?.data?.detail || "Upload failed.");
+  }
+};
 
   const fetchPdfs = async () => {
     const res = await axios.get("https://recipes-9s4d.onrender.com/list-pdfs");
